@@ -5,27 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cennik usług - Kocie Oko Studio</title>
     
+    <link rel="icon" type="image/png" href="logogold.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* ============================== */
-        /* 1. GLOBALNE USTAWIENIA BODY    */
-        /* ============================== */
+        /* ZŁOTY KURSOR */
+        #cursor {
+            width: 10px; height: 10px; background: #c8a96a; border-radius: 50%;
+            position: fixed; pointer-events: none; z-index: 10000;
+            transition: transform 0.1s ease; box-shadow: 0 0 15px #c8a96a;
+        }
+        .cursor-hover { transform: scale(4); background: rgba(200, 169, 106, 0.3) !important; }
+
+        /* GLOBALNE USTAWIENIA */
+        html { cursor: none; }
         body {
             margin: 0;
-            padding-top: 80px; /* Miejsce na przypięty pasek menu */
+            padding-top: 80px;
             font-family: 'Inter', sans-serif;
             color: #eaeaea;
             scroll-behavior: smooth;
             background: #020202;
         }
+        a, button, tr { cursor: none; }
 
-        /* ============================== */
-        /* 2. MENU (IDENTYCZNE JAK HOME)  */
-        /* ============================== */
+        /* MENU */
         .main-header {
             position: fixed;
             top: 0;
@@ -43,19 +51,8 @@
             box-sizing: border-box;
         }
 
-        .nav-logo {
-            height: 60px;
-            width: auto;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .logo-text {
-            font-family: 'Allura', cursive;
-            font-size: 32px;
-            color: #c8a96a;
-            text-decoration: none;
-        }
+        .nav-logo { height: 60px; width: auto; display: block; transition: 0.3s; }
+        .logo-text { font-family: 'Allura', cursive; font-size: 32px; color: #c8a96a; text-decoration: none; }
 
         nav a {
             color: white;
@@ -66,47 +63,40 @@
             letter-spacing: 1px;
             transition: 0.3s;
         }
+        nav a:hover { color: #c8a96a; }
 
-        nav a:hover {
-            color: #c8a96a;
+        /* PODSTRONA CENNIK */
+        .pricelist-subpage {
+            background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(2, 2, 2, 0.7)), url('backgroundoriginal.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 60px 20px 80px 20px;
+            text-align: left;
+            min-height: 100vh;
         }
 
-        /* ============================== */
-        /* 3. PODSTRONA CENNIK            */
-        /* ============================== */
-		.pricelist-subpage {
-			/* Wskazujemy plik graficzny */
-			background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(2, 2, 2, 0.7)), url('backgroundoriginal.png');
-    
-			/* Ustawienia obrazu tła */
-			background-size: cover;        /* Obrazek pokryje całą powierzchnię */
-			background-position: center;   /* Wyśrodkowanie grafiki */
-			background-attachment: fixed;  /* Efekt paralaksy (tło stoi, treść płynie) - opcjonalnie */
-    
-			padding: 60px 20px 80px 20px;
-			text-align: left;
-			min-height: 100vh;             /* Upewnia się, że tło wypełnia cały ekran */
-}
-
-.pricelist-card {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.8); /* Zwiększyłam z 0.4 na 0.8 dla lepszej czytelności */
-    padding: 60px 40px;
-    border: 1px solid rgba(200,169,106,0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Dodałam cień, by karta "wystawała" z tła */
-}
-
-        .pricelist-header {
-            text-align: center;
-            margin-bottom: 50px;
+        .pricelist-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 60px 40px;
+            border: 1px solid rgba(200,169,106,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
+        .pricelist-header { text-align: center; margin-bottom: 50px; }
+
+        /* MEGA FANCY NAGŁÓWEK */
         .pricelist-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 52px;
-            color: #c8a96a;
-            margin-bottom: 15px;
+            font-family: 'Allura', cursive;
+            font-size: 82px;
+            margin-bottom: 0;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #f1d38a 0%, #c8a96a 50%, #a67c33 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
         }
 
         .tattoo-price {
@@ -118,27 +108,10 @@
             margin-top: 0;
         }
 
-        .header-ornament {
-            width: 60px;
-            height: 3px;
-            background: #c8a96a;
-            margin: 20px auto 0 auto;
-        }
+        .header-ornament { width: 60px; height: 3px; background: #c8a96a; margin: 20px auto 0 auto; }
+        .line-ornament { width: 100px; height: 1px; background: rgba(200,169,106,0.3); margin: 20px auto; }
 
-        .line-ornament {
-            width: 100px;
-            height: 1px;
-            background: rgba(200,169,106,0.3);
-            margin: 20px auto;
-        }
-
-        .pricelist-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 16px;
-            color: #ddd;
-        }
-
+        .pricelist-table { width: 100%; border-collapse: collapse; font-size: 16px; color: #ddd; }
         .pricelist-table h3 {
             font-family: 'Playfair Display', serif;
             font-size: 20px;
@@ -151,28 +124,17 @@
             border-bottom: 1px solid rgba(200,169,106,0.3);
         }
 
-        .pricelist-table td {
-            padding: 15px 10px;
-            line-height: 1.4;
-        }
-
+        .pricelist-table td { padding: 15px 10px; line-height: 1.4; }
         .pricelist-table td:last-child {
             text-align: right;
             width: 150px;
             color: #c8a96a;
             font-weight: bold;
         }
+        .pricelist-table tr:hover td { background: rgba(200,169,106,0.05); color: #fff; }
 
-        /* ============================== */
-        /* 4. FOOTER (IDENTYCZNY JAK HOME)*/
-        /* ============================== */
-        footer {
-            background: #020202;
-            color: #eaeaea;
-            padding: 60px 0 0 0;
-            border-top: 1px solid #c8a96a;
-        }
-
+        /* FOOTER */
+        footer { background: #020202; color: #eaeaea; padding: 60px 0 0 0; border-top: 1px solid #c8a96a; }
         .footer-container {
             max-width: 1100px;
             margin: 0 auto;
@@ -183,84 +145,30 @@
             text-align: left;
         }
 
-        .footer-col h4 {
-            color: #c8a96a;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-size: 18px;
+        .footer-col h4 { color: #c8a96a; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 18px; }
+        .footer-col p { color: #aaa; line-height: 1.6; margin: 10px 0; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: #c8a96a; padding-left: 5px; }
+
+        .social-icons { display: flex; justify-content: flex-start; gap: 15px; margin-top: 20px; }
+        .social-icon { width: 24px; height: 24px; fill: #c8a96a; transition: 0.3s ease; }
+        .social-icons a:hover .social-icon { fill: #FFFFFF; transform: scale(1.1); }
+
+        .map-container { width: 100%; display: flex; justify-content: center; line-height: 0; }
+        .map-container iframe { 
+            width: 100%; max-width: 1100px; height: 300px; border: 0; 
+            filter: grayscale(1) invert(0.9) contrast(1.2) opacity(0.8);
         }
 
-        .footer-col p {
-            color: #aaa;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #c8a96a;
-            padding-left: 5px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: flex-start;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            fill: #c8a96a;
-            transition: 0.3s ease;
-        }
-
-        .social-icons a:hover .social-icon {
-            fill: #FFFFFF;
-            transform: scale(1.1);
-        }
-
-        .map-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            line-height: 0;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            max-width: 1100px;
-            height: 300px;
-            border: 0;
-        }
-
-        .footer-bottom {
-            background: #000;
-            padding: 20px;
-            text-align: center;
-            color: #555;
-            font-size: 12px;
-        }
+        .footer-bottom { background: #000; padding: 20px; text-align: center; color: #555; font-size: 12px; }
     </style>
 </head>
 
 <body>
+
+    <div id="cursor"></div>
 
     <header class="main-header">
         <a href="index.html">
@@ -279,16 +187,14 @@
     <section class="pricelist-subpage">
         <div class="pricelist-card">
             <div class="pricelist-header">
-                <h2>Cennik usług</h2>
+                <h2>Cennik</h2>
                 <p class="tattoo-price">Tatuaż 200 zł - 1000 zł za sesję</p>
                 <div class="header-ornament"></div>
             </div>
 
             <table class="pricelist-table">
                 <tbody>
-                    <tr>
-                        <td colspan="2"><h3>Makijaż Permanentny / Usuwanie PMU</h3></td>
-                    </tr>
+                    <tr><td colspan="2"><h3>Makijaż Permanentny / Usuwanie PMU</h3></td></tr>
                     <tr><td>Makijaż permanentny brwi</td><td>700 zł</td></tr>
                     <tr><td>Makijaż permanentny oczu eyeliner</td><td>500 zł</td></tr>
                     <tr><td>Makijaż permanentny oczu kreska cieniowana</td><td>500 zł</td></tr>
@@ -389,5 +295,18 @@
         </div>
     </footer>
 
+    <script>
+        const cursor = document.querySelector('#cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const hoverables = document.querySelectorAll('a, button, tr, .social-icon');
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+        });
+    </script>
 </body>
 </html>
