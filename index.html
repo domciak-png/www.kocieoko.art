@@ -209,12 +209,22 @@
         .map-container iframe { width: 100%; height: 300px; border: 0; filter: grayscale(1) invert(0.9); }
         .footer-bottom { background: #000; padding: 20px; text-align: center; color: #555; font-size: 12px; }
 
-        @media (max-width: 768px) {
-            body, .hero { background-attachment: scroll !important; background-size: contain !important; background-position: top center !important; }
-            .hero { height: 60vh; margin-top: 0; }
-            .main-header { padding: 10px 20px; }
-            nav a { margin-left: 10px; font-size: 11px; }
-        }
+@media (max-width: 768px) {
+    body, .hero { 
+        /* Wyłączamy kafelkowanie */
+        background-repeat: no-repeat !important;
+        /* Scroll jest płynniejszy na mobile niż fixed */
+        background-attachment: scroll !important; 
+        /* Cover wypełni ekran, zamiast robić puste miejsca */
+        background-size: cover !important; 
+        /* Center sprawi, że pokaże środek Twojej panoramy 3 zdjęć */
+        background-position: center center !important; 
+    }
+    /* Zwiększamy nieco wysokość, żeby środkowe zdjęcie ładnie siadło */
+    .hero { height: 70vh; margin-top: 0; }
+}
+    .hero { height: 60vh; margin-top: 0; }
+}
     </style>
 </head>
 
