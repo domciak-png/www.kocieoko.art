@@ -35,7 +35,7 @@
 
         /* 2. GLOBALNE & TYPOGRAFIA */
         html { scroll-behavior: smooth; cursor: none; }
-        a, button, .card, .insta-item { cursor: none; }
+        a, button, .card, .insta-item, .social-item { cursor: none; }
 
         body {
             margin: 0;
@@ -50,7 +50,6 @@
             background-position: center;  
         }
 
-        /* ZŁOTE NAGŁÓWKI (Efekt 6) */
         h2 {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
@@ -79,13 +78,13 @@
         nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         nav a:hover { color: #c8a96a; }
 
-        /* 4. HERO (Paralaksa - Efekt 1) */
+        /* 4. HERO */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('background.png');
             background-size: cover; background-position: center;
-            background-attachment: fixed; /* Paralaksa */
+            background-attachment: fixed;
             text-align: center; margin-top: -70px;
         }
 
@@ -93,7 +92,6 @@
         .subtitle { color: #FFFFFF; margin-top: 15px; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
         .separator { color: #c8a96a; margin: 0 5px; font-weight: bold; }
 
-        /* PULSUJĄCY PRZYCISK (Efekt 8) */
         .button {
             margin-top: 30px;
             padding: 14px 40px;
@@ -129,7 +127,16 @@
         }
         .card:hover { transform: translateY(-8px); border-color: #c8a96a; background: rgba(255, 255, 255, 0.2); }
 
-        /* 6. INSTAGRAM GRID (Efekt 7) */
+        /* OPINIE / BOOKSY SCORE */
+        .reviews-container { text-align: center; max-width: 800px; margin: 0 auto; }
+        .booksy-score { margin-bottom: 40px; }
+        .stars { color: #bf953f; font-size: 24px; margin-bottom: 5px; letter-spacing: 3px; }
+        .score-text { font-size: 32px; font-weight: bold; color: #fff; }
+        .testimonial { background: rgba(255,255,255,0.05); padding: 25px; border-left: 3px solid #c8a96a; margin-bottom: 20px; text-align: left; }
+        .testimonial p { font-style: italic; margin-bottom: 10px; color: #ddd; }
+        .review-author { color: #c8a96a; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+
+        /* 6. INSTAGRAM GRID */
         .instagram-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -151,36 +158,62 @@
         .insta-item:hover .insta-overlay { opacity: 1; }
         .insta-item:hover img { transform: scale(1.1); filter: brightness(1); }
 
-        .testimonial { border-left: 2px solid #c8a96a; padding-left: 20px; margin-bottom: 30px; font-style: italic; font-size: 18px; }
+        /* 8. NOWE ZŁOTE SOCIAL MEDIA (LISTA) */
+        .social-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .social-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+            transition: 0.3s ease;
+        }
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            fill: #c8a96a;
+            filter: drop-shadow(0 0 2px rgba(200, 169, 106, 0.5));
+            transition: 0.3s;
+        }
+        .social-text {
+            color: #aaa;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .social-item:hover .social-icon {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px #c8a96a);
+        }
+        .social-item:hover .social-text {
+            color: #c8a96a;
+            padding-left: 5px;
+        }
+
         .cta { text-align: center; padding: 100px 20px; }
 
         /* FOOTER */
         footer { background: #020202; color: #eaeaea; padding: 60px 0 0 0; border-top: 1px solid #c8a96a; }
         .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 0 20px 40px 20px; }
         .footer-col h4 { color: #c8a96a; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        .footer-col p { color: #aaa; margin: 10px 0; }
+        .footer-col p { color: #aaa; margin: 10px 0; font-size: 14px; }
         .footer-links { list-style: none; padding: 0; }
-        .footer-links a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-links a { color: #aaa; text-decoration: none; transition: 0.3s; font-size: 14px; }
         .footer-links a:hover { color: #c8a96a; padding-left: 5px; }
 
         .map-container iframe { width: 100%; height: 300px; border: 0; filter: grayscale(1) invert(0.9); }
         .footer-bottom { background: #000; padding: 20px; text-align: center; color: #555; font-size: 12px; }
 
-        /* POPRAWKA DLA URZĄDZEŃ MOBILNYCH - ZDJĘCIE TŁA */
         @media (max-width: 768px) {
-            body {
-                background-attachment: scroll !important;
-                background-position: center top !important;
-            }
-            .hero {
-                background-attachment: scroll !important;
-                background-size: cover !important; 
-                background-position: center center !important;
-                height: 70vh !important; /* Mniejsze hero na telefonie */
-            }
-            .hero-logo { max-width: 280px !important; }
+            body, .hero { background-attachment: scroll !important; background-size: contain !important; background-position: top center !important; }
+            .hero { height: 60vh; margin-top: 0; }
             .main-header { padding: 10px 20px; }
-            nav a { margin-left: 10px; font-size: 12px; }
+            nav a { margin-left: 10px; font-size: 11px; }
         }
     </style>
 </head>
@@ -213,9 +246,9 @@
     <p class="about">
         Jeśli tu jesteś - szukasz czegoś więcej niż „ładnego efektu”.<br><br>
         Nazywam się Karolina i z wykształcenia oraz zamiłowania jestem kosmetologiem. 
-        Ukończyłam Śląski Uniwersytet Medyczny na kierunku Kosmetologia, Technika Usługa Kosmetycznych oraz Technika Sterylizacji Medycznej. 
-        Swój zawód kształciłam w praktyce około 8 lat pracując w salonie kosmetycznym jednocześnie szkoląc się w kierunku Linergistki oraz stylistki rzęs i hobbystycznie tatuując. 
-        Na ten moment łączę wszystkie moje ulubione usługi w jednym miejscu. Każda usługa została wyselekcjonowana przez lata doświadczenia w zawodzie.
+        Ukończyłam Śląski Uniwersytet Medyczny na kierunku Kosmetologia. 
+        Swój zawód kształciłam w praktyce około 8 lat, łącząc wiedzę medyczną z pasją do tatuażu i stylizacji. 
+        W Kocim Oku stawiam na jakość i bezpieczeństwo.
     </p>
 </section>
 
@@ -228,11 +261,32 @@
         </div>
         <div class="card" data-aos="flip-left" data-aos-delay="200">
             <h3>Tatuaż & PMU</h3>
-            <p>Indywidualne projekty dopasowane do Ciebie oraz profesjonalny makijaż permanentny.</p>
+            <p>Indywidualne projekty oraz profesjonalny makijaż permanentny.</p>
         </div>
         <div class="card" data-aos="flip-left" data-aos-delay="400">
             <h3>Kosmetologia</h3>
             <p>Mezoterapia, pielęgnacja i zabiegi regenerujące.</p>
+        </div>
+    </div>
+</section>
+
+<section id="zaufali-nam" data-aos="fade-up">
+    <h2>Zaufali nam</h2>
+    <div class="reviews-container">
+        <div class="booksy-score" data-aos="zoom-in">
+            <div class="stars">★★★★★</div>
+            <div class="score-text">5.0 / 5.0</div>
+            <p style="color: #888; font-size: 14px; margin-top: 5px;">na podstawie opinii z Booksy</p>
+        </div>
+
+        <div class="testimonial" data-aos="fade-left">
+            <p>"Pełen profesjonalizm, Karolina to osoba z pasją i ogromną wiedzą. Serdecznie polecam każdemu, kto ceni jakość!"</p>
+            <span class="review-author">— Anna K.</span>
+        </div>
+
+        <div class="testimonial" data-aos="fade-left" data-aos-delay="200">
+            <p>"Najlepsze rzęsy w mieście! Atmosfera w studiu jest cudowna, a efekty zawsze przechodzą moje oczekiwania."</p>
+            <span class="review-author">— Magdalena M.</span>
         </div>
     </div>
 </section>
@@ -259,13 +313,6 @@
     </div>
 </section>
 
-<section data-aos="fade-up">
-    <h2>Zaufali nam</h2>
-    <p class="testimonial">„Perfekcja w każdym detalu. Atmosfera i efekty top.”</p>
-    <p class="testimonial">„Najlepsze rzęsy jakie miałam – wracam regularnie.”</p>
-    <p class="testimonial">„Pełen profesjonalizm i wyczucie estetyki.”</p>
-</section>
-
 <section class="cta" id="kontakt" data-aos="zoom-in">
     <h2>Zarezerwuj wizytę</h2>
     <a href="https://booksy.com/pl-pl/286978_studio-kocie-oko-karolina-kot_salon-kosmetyczny_12376_piekary-slaskie#ba_s=seo" target="_blank" class="button">Umów się przez Booksy</a>
@@ -276,20 +323,35 @@
         <div class="footer-col">
             <h4>Godziny otwarcia</h4>
             <p>Poniedziałek: 11:30-19:00</p>
-            <p>Wtorek: 09:00-20:00</p>
-            <p>Środa: 10:00 – 20:00</p>
-            <p>Czwartek: 09:00-20:00</p>
+            <p>Wtorek - Czwartek: 09:00-20:00</p>
             <p>Piątek: 08:00-19:00</p>
             <p>Sobota: 09:00-13:00</p>
             <p>Niedziela: Zamknięte</p>
         </div>
         <div class="footer-col">
-            <h4>Adres</h4>
-            <p>📍 Marii Curie-Skłodowskiej 107/1</p>
+            <h4>Adres & Social Media</h4>
+            <p>📍 Curie-Skłodowskiej 107/1</p>
             <p>42-600 Piekary Śląskie</p>
-            <p>Polska</p>
-            <p>studio@kocieoko.art</p>
-            <p>666 127 665</p>
+            <p>📞 666 127 665</p>
+            
+            <div class="social-list">
+                <a href="https://www.facebook.com/share/14u3yNJppp/" target="_blank" class="social-item">
+                    <svg class="social-icon" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                    <span class="social-text">Facebook Studio Kocie Oko</span>
+                </a>
+                <a href="https://www.instagram.com/kocieokostudio" target="_blank" class="social-item">
+                    <svg class="social-icon" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2s34.4-58 36.2-93.9c2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    <span class="social-text">Instagram Studio</span>
+                </a>
+                <a href="https://www.instagram.com/karolinakot.pmu/" target="_blank" class="social-item">
+                    <svg class="social-icon" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2s34.4-58 36.2-93.9c2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    <span class="social-text">Instagram PMU</span>
+                </a>
+                <a href="https://www.instagram.com/kotka_dziara/" target="_blank" class="social-item">
+                    <svg class="social-icon" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2s34.4-58 36.2-93.9c2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    <span class="social-text">Instagram Tattoo</span>
+                </a>
+            </div>
         </div>
         <div class="footer-col">
             <h4>Nawigacja</h4>
@@ -304,7 +366,7 @@
     </div>
 
     <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2544.755434778103!2d18.94828347688224!3d50.3710777930113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47112dc9970c7937%3A0xc3f9202157771746!2sMarii%20Curie-Sk%C5%82odowskiej%20107%2C%2042-600%20Piekary%20%C5%9Al%C4%85skie!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2544.75510682283!2d18.9407386!3d50.3710996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47112cf69c7662c1%3A0x8e8316982f80c6c!2sMarii%20Curie-Sk%C5%82odowskiej%20107%2F1%2C%2042-600%20Piekary%20%C5%9Al%C4%85skie!5e0!3m2!1spl!2spl!4v1710000000000" loading="lazy"></iframe>
     </div>
 
     <div class="footer-bottom">
@@ -323,7 +385,8 @@
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
     });
-    document.querySelectorAll('a, .card, .button, .insta-item').forEach(el => {
+    
+    document.querySelectorAll('a, .card, .button, .insta-item, .social-item').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
     });
