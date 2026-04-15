@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cennik usług - Kocie Oko Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================== */
+        /* 1. GLOBALNE USTAWIENIA BODY    */
+        /* ============================== */
+        body {
+            margin: 0;
+            padding-top: 80px; /* Miejsce na przypięty pasek menu */
+            font-family: 'Inter', sans-serif;
+            color: #eaeaea;
+            scroll-behavior: smooth;
+            background: #020202;
+        }
+
+        /* ============================== */
+        /* 2. MENU (IDENTYCZNE JAK HOME)  */
+        /* ============================== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #c8a96a;
+            box-sizing: border-box;
+        }
+
+        .nav-logo {
+            height: 60px;
+            width: auto;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .logo-text {
+            font-family: 'Allura', cursive;
+            font-size: 32px;
+            color: #c8a96a;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #c8a96a;
+        }
+
+        /* ============================== */
+        /* 3. PODSTRONA CENNIK            */
+        /* ============================== */
+		.pricelist-subpage {
+			/* Wskazujemy plik graficzny */
+			background: linear-gradient(rgba(2, 2, 2, 0.7), rgba(2, 2, 2, 0.7)), url('backgroundoriginal.png');
+    
+			/* Ustawienia obrazu tła */
+			background-size: cover;        /* Obrazek pokryje całą powierzchnię */
+			background-position: center;   /* Wyśrodkowanie grafiki */
+			background-attachment: fixed;  /* Efekt paralaksy (tło stoi, treść płynie) - opcjonalnie */
+    
+			padding: 60px 20px 80px 20px;
+			text-align: left;
+			min-height: 100vh;             /* Upewnia się, że tło wypełnia cały ekran */
+}
+
+.pricelist-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8); /* Zwiększyłam z 0.4 na 0.8 dla lepszej czytelności */
+    padding: 60px 40px;
+    border: 1px solid rgba(200,169,106,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Dodałam cień, by karta "wystawała" z tła */
+}
+
+        .pricelist-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pricelist-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            color: #c8a96a;
+            margin-bottom: 15px;
+        }
+
+        .tattoo-price {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            color: #D4AF37;
+            letter-spacing: 2px;
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        .header-ornament {
+            width: 60px;
+            height: 3px;
+            background: #c8a96a;
+            margin: 20px auto 0 auto;
+        }
+
+        .line-ornament {
+            width: 100px;
+            height: 1px;
+            background: rgba(200,169,106,0.3);
+            margin: 20px auto;
+        }
+
+        .pricelist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            color: #ddd;
+        }
+
+        .pricelist-table h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(200,169,106,0.3);
+        }
+
+        .pricelist-table td {
+            padding: 15px 10px;
+            line-height: 1.4;
+        }
+
+        .pricelist-table td:last-child {
+            text-align: right;
+            width: 150px;
+            color: #c8a96a;
+            font-weight: bold;
+        }
+
+        /* ============================== */
+        /* 4. FOOTER (IDENTYCZNY JAK HOME)*/
+        /* ============================== */
+        footer {
+            background: #020202;
+            color: #eaeaea;
+            padding: 60px 0 0 0;
+            border-top: 1px solid #c8a96a;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px 40px 20px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: #c8a96a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col p {
+            color: #aaa;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #c8a96a;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: #c8a96a;
+            transition: 0.3s ease;
+        }
+
+        .social-icons a:hover .social-icon {
+            fill: #FFFFFF;
+            transform: scale(1.1);
+        }
+
+        .map-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            line-height: 0;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            max-width: 1100px;
+            height: 300px;
+            border: 0;
+        }
+
+        .footer-bottom {
+            background: #000;
+            padding: 20px;
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <a href="index.html">
+            <img src="logogold.png" alt="Kocie Oko Logo" class="nav-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <span class="logo-text" style="display:none;">Kocie Oko</span>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#oferta">Oferta</a>
+            <a href="galeria.html">Galeria</a>
+            <a href="cennik.html">Cennik</a>
+            <a href="index.html#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <section class="pricelist-subpage">
+        <div class="pricelist-card">
+            <div class="pricelist-header">
+                <h2>Cennik usług</h2>
+                <p class="tattoo-price">Tatuaż 200 zł - 1000 zł za sesję</p>
+                <div class="header-ornament"></div>
+            </div>
+
+            <table class="pricelist-table">
+                <tbody>
+                    <tr>
+                        <td colspan="2"><h3>Makijaż Permanentny / Usuwanie PMU</h3></td>
+                    </tr>
+                    <tr><td>Makijaż permanentny brwi</td><td>700 zł</td></tr>
+                    <tr><td>Makijaż permanentny oczu eyeliner</td><td>500 zł</td></tr>
+                    <tr><td>Makijaż permanentny oczu kreska cieniowana</td><td>500 zł</td></tr>
+                    <tr><td>Makijaż permanentny oczu zagęszczenie linii rzęs</td><td>600 zł</td></tr>
+                    <tr><td>Makijaż permanentny kreska dolna</td><td>600 zł</td></tr>
+                    <tr><td>Makijaż permanentny ust</td><td>600 zł</td></tr>
+                    <tr><td>Dopigmentowanie do 8 tygodni</td><td>100 zł</td></tr>
+                    <tr><td>Korekta makijażu do 1,5 roku</td><td>300 zł</td></tr>
+                    <tr><td>Korekta makijażu do 2,5 roku</td><td>450 zł</td></tr>
+                    <tr><td>Usuwanie makijażu permanentnego</td><td>150 zł</td></tr>
+
+                    <tr><td colspan="2"><div class="line-ornament"></div></td></tr>
+
+                    <tr><td colspan="2"><h3>Stylizacja Rzęs</h3></td></tr>
+                    <tr><td>Rzęsy 1:1</td><td>150 zł</td></tr>
+                    <tr><td>Korekta rzęs 1:1</td><td>130 zł</td></tr>
+                    <tr><td>Rzęsy 2:1</td><td>160 zł</td></tr>
+                    <tr><td>Korekta rzęs 2:1</td><td>140 zł</td></tr>
+                    <tr><td>Rzęsy 3:1</td><td>170 zł</td></tr>
+                    <tr><td>Korekta rzęs 3:1</td><td>150 zł</td></tr>
+                    <tr><td>Rzęsy 4D-8D</td><td>190 zł</td></tr>
+                    <tr><td>Korekta rzęs 4D-8D</td><td>170 zł</td></tr>
+                    <tr><td>Ściągnięcie rzęs</td><td>30 zł</td></tr>
+
+                    <tr><td colspan="2"><div class="line-ornament"></div></td></tr>
+
+                    <tr><td colspan="2"><h3>Zabiegi Kosmetyczne / Henna</h3></td></tr>
+                    <tr><td>Henna brwi z regulacją</td><td>50 zł</td></tr>
+                    <tr><td>Henna brwi</td><td>30 zł</td></tr>
+                    <tr><td>Regulacja brwi</td><td>25 zł</td></tr>
+                    <tr><td>Henna brwi i rzęs</td><td>50 zł</td></tr>
+                    <tr><td>Henna brwi, rzęsy i regulacja</td><td>60 zł</td></tr>
+                    <tr><td>Depilacja wąs</td><td>25 zł</td></tr>
+                    <tr><td>Laminacja rzęs</td><td>150 zł</td></tr>
+                    <tr><td>Laminacja brwi</td><td>130 zł</td></tr>
+
+                    <tr><td colspan="2"><div class="line-ornament"></div></td></tr>
+
+                    <tr><td colspan="2"><h3>Kosmetologia Estetyczna / Mezoterapia</h3></td></tr>
+                    <tr><td>Zamykanie naczynek</td><td>50 zł - 200 zł</td></tr>
+                    <tr><td>Elektrokoagulacja</td><td>50 zł - 200 zł</td></tr>
+                    <tr><td>Mezoterapia mikroigłowa</td><td>250 zł</td></tr>
+                    <tr><td>Oczyszczanie manualne twarzy</td><td>150 zł - 200 zł</td></tr>
+                    <tr><td>Masaż KOBIDO</td><td>150 zł</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Godziny otwarcia</h4>
+                <p>Poniedziałek: 11:30-19:00</p>
+                <p>Wtorek: 09:00-20:00</p>
+                <p>Środa: 10:00 – 20:00</p>
+                <p>Czwartek: 09:00-20:00</p>
+                <p>Piątek: 08:00-19:00</p>
+                <p>Sobota: 09:00-13:00</p>
+                <p>Niedziela: Zamknięte</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Adres</h4>
+                <p>📍 Marii Curie-Skłodowskiej 107/1</p>
+                <p>42-600 Piekary Śląskie</p>
+                <p>Polska</p>
+                <p>studio@kocieoko.art</p>
+                <p>666 127 665</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/kocieokostudio" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2s34.4-58 36.2-93.9c2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/share/14u3yNJppp/" target="_blank">
+                        <svg class="social-icon" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Nawigacja</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Strona Główna</a></li>
+                    <li><a href="index.html#oferta">Oferta</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="cennik.html">Cennik</a></li>
+                    <li><a href="index.html#kontakt">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2544.755434778103!2d18.94828347688224!3d50.3710777930113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47112dc9970c7937%3A0xc3f9202157771746!2sMarii%20Curie-Sk%C5%82odowskiej%20107%2C%2042-600%20Piekary%20%C5%9Al%C4%85skie!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" loading="lazy"></iframe>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Kocie Oko Studio | Karolina Kot | Design by Dominika Keller</p>
+        </div>
+    </footer>
+
+</body>
+</html>
