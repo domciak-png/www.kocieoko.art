@@ -5,37 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kocie Oko Studio</title>
     
+    <link rel="icon" type="image/png" href="logogold.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-    <style>
-        /* 1. GLOBALNE USTAWIENIA BODY */
-		body {
-			margin: 0;
-			padding-top: 70px;
-			font-family: 'Inter', sans-serif;
-			color: #eaeaea;
-			scroll-behavior: smooth;
-			/* Twoje nowe tło z przyciemnieniem */
-			background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('backgroundoriginal.png');			
-			background-size: cover;      
-			background-repeat: no-repeat; 
-			background-attachment: fixed; 
-			background-position: center;  
-}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
-        /* 2. PRZYPIĘTY PASEK MENU */
-        .main-header {
+    <style>
+        /* 1. CUSTOM CURSOR */
+        #cursor {
+            width: 10px;
+            height: 10px;
+            background: #c8a96a;
+            border-radius: 50%;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 9999;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 15px #c8a96a;
+        }
+        .cursor-hover {
+            transform: scale(4);
+            background: rgba(200, 169, 106, 0.3) !important;
+        }
+
+        /* 2. GLOBALNE & TYPOGRAFIA */
+        html { scroll-behavior: smooth; cursor: none; }
+        a, button, .card, .insta-item { cursor: none; }
+
+        body {
+            margin: 0;
+            padding-top: 70px;
+            font-family: 'Inter', sans-serif;
+            color: #eaeaea;
+            background-color: #050505;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('backgroundoriginal.png');			
+            background-size: cover;      
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            background-position: center;  
+        }
+
+        /* ZŁOTE NAGŁÓWKI (Efekt 6) */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* 3. MENU */
+        .main-header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 10px 50px;
             background: rgba(5, 5, 5, 0.85);
             backdrop-filter: blur(10px);
@@ -44,64 +75,25 @@
             box-sizing: border-box;
         }
 
-        .nav-logo {
-            height: 60px;
-            width: auto;
-            display: block;
-            transition: 0.3s;
+        .nav-logo { height: 60px; transition: 0.3s; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        nav a:hover { color: #c8a96a; }
+
+        /* 4. HERO (Paralaksa - Efekt 1) */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('background.png');
+            background-size: cover; background-position: center;
+            background-attachment: fixed; /* Paralaksa */
+            text-align: center; margin-top: -70px;
         }
 
-        .nav-logo:hover {
-            transform: scale(1.05);
-        }
+        .hero-logo { max-width: 400px; width: 90%; margin-bottom: 10px; }
+        .subtitle { color: #FFFFFF; margin-top: 15px; font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
+        .separator { color: #c8a96a; margin: 0 5px; font-weight: bold; }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-		/* 3. HERO SECTION */
-		.hero {
-			height: 100vh;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('background.png');
-			background-size: cover;
-			background-position: center;
-			text-align: center;
-			margin-top: -70px;
-}
-
-        /* Nowy styl dla logo w Hero zamiast napisu H1 */
-        .hero-logo {
-            max-width: 400px;
-            width: 90%;
-            height: auto;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
-        }
-
-        .subtitle {
-            color: #FFFFFF; /* Zmiana na biały */
-            margin-top: 15px;
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        .separator {
-            color: #c8a96a; /* Złoty kolor kropek */
-            margin: 0 5px;
-            font-weight: bold;
-        }
-
+        /* PULSUJĄCY PRZYCISK (Efekt 8) */
         .button {
             margin-top: 30px;
             padding: 14px 40px;
@@ -112,215 +104,94 @@
             display: inline-block;
             text-transform: uppercase;
             letter-spacing: 1px;
+            animation: pulse-gold 2s infinite;
         }
-
-        .button:hover {
-            background: #c8a96a;
-            color: #050505;
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(200, 169, 106, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(200, 169, 106, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(200, 169, 106, 0); }
         }
+        .button:hover { background: #c8a96a; color: #050505; transform: scale(1.05); }
 
-        /* 4. SEKCJE */
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 20px;
-        }
+        /* 5. SEKCJE */
+        section { max-width: 1100px; margin: auto; padding: 80px 20px; }
+        .about { line-height: 1.8; max-width: 800px; font-size: 17px; margin: 0 auto; text-align: center; }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: #c8a96a;
-            margin-bottom: 20px;
-            font-size: 36px;
+        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.12); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            transition: 0.4s;
             text-align: center;
         }
+        .card:hover { transform: translateY(-8px); border-color: #c8a96a; background: rgba(255, 255, 255, 0.2); }
 
-        .about {
-            line-height: 1.8;
-            max-width: 800px;
-            font-size: 17px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-		.card {
-			/* Jasne tło zamiast ciemnej zieleni */
-			background: rgba(255, 255, 255, 0.12); 
-			backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
-			border: 1px solid rgba(255, 255, 255, 0.2);
-    
-			padding: 30px;
-			position: relative;
-			overflow: hidden;
-			transition: 0.4s;
-}
-
-		.card:hover {
-			transform: translateY(-8px);
-			background: rgba(255, 255, 255, 0.2);
-			border-color: #c8a96a;
-}
-
-        .testimonial {
-            border-left: 2px solid #c8a96a;
-            padding-left: 20px;
-            margin-bottom: 30px;
-            font-style: italic;
-            font-size: 18px;
-        }
-
-        .gallery {
+        /* 6. INSTAGRAM GRID (Efekt 7) */
+        .instagram-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
-
-        .gallery div {
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.8);
-            transition: 0.4s;
+        .insta-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
             border: 1px solid rgba(200,169,106,0.2);
         }
-
-        .gallery div:hover {
-            filter: brightness(1);
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); transition: 0.6s; }
+        .insta-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(200, 169, 106, 0.7);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: 0.4s; color: white; font-weight: bold; font-size: 12px; letter-spacing: 1px;
         }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+        .insta-item:hover img { transform: scale(1.1); filter: brightness(1); }
 
-        .cta {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(180deg, transparent, rgba(7, 29, 23, 0.9));
-        }
+        .testimonial { border-left: 2px solid #c8a96a; padding-left: 20px; margin-bottom: 30px; font-style: italic; font-size: 18px; }
+        .cta { text-align: center; padding: 100px 20px; }
 
-        /* 5. FOOTER */
-        footer {
-            background: #020202;
-            color: #eaeaea;
-            padding: 60px 0 0 0;
-            border-top: 1px solid #c8a96a;
-        }
+        /* FOOTER */
+        footer { background: #020202; color: #eaeaea; padding: 60px 0 0 0; border-top: 1px solid #c8a96a; }
+        .footer-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding: 0 20px 40px 20px; }
+        .footer-col h4 { color: #c8a96a; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-col p { color: #aaa; margin: 10px 0; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: #c8a96a; padding-left: 5px; }
 
-        .footer-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding: 0 20px 40px 20px;
-            text-align: left;
-        }
-
-        .footer-col h4 {
-            color: #c8a96a;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
-
-        .footer-col p {
-            color: #aaa;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #c8a96a;
-            padding-left: 5px;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: flex-start;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            fill: #c8a96a;
-            transition: 0.3s ease;
-        }
-
-        .social-icons a:hover .social-icon {
-            fill: #FFFFFF;
-            transform: scale(1.1);
-        }
-
-        .map-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            line-height: 0;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            max-width: 1100px;
-            height: 300px;
-            border: 0;
-        }
-
-        .footer-bottom {
-            background: #000;
-            padding: 20px;
-            text-align: center;
-            color: #555;
-            font-size: 12px;
-        }
+        .map-container iframe { width: 100%; height: 300px; border: 0; filter: grayscale(1) invert(0.9); }
+        .footer-bottom { background: #000; padding: 20px; text-align: center; color: #555; font-size: 12px; }
     </style>
 </head>
 
 <body>
 
+<div id="cursor"></div>
+
 <header class="main-header">
-    <a href="#">
-        <img src="logogold.png" alt="Kocie Oko Logo" class="nav-logo">
-    </a>
-<nav>
-    <a href="index.html">Home</a>
-    <a href="#oferta">Oferta</a>
-    <a href="galeria.html">Galeria</a> 
-	<a href="cennik.html">Cennik</a>
-    <a href="#kontakt">Kontakt</a>
-</nav>
+    <a href="#"><img src="logogold.png" alt="Kocie Oko Logo" class="nav-logo"></a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#oferta">Oferta</a>
+        <a href="galeria.html">Galeria</a> 
+        <a href="cennik.html">Cennik</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
 </header>
 
 <div class="hero">
-    <img src="logogold.png" alt="Kocie Oko Studio" class="hero-logo">
-    
-    <p class="subtitle">
+    <img src="logogold.png" alt="Kocie Oko Studio" class="hero-logo" data-aos="zoom-in">
+    <p class="subtitle" data-aos="fade-up" data-aos-delay="200">
         Tatuaż <span class="separator">•</span> PMU <span class="separator">•</span> Rzęsy <span class="separator">•</span> Kosmetologia
     </p>
-    
-    <a href="https://booksy.com/pl-pl/286978_studio-kocie-oko-karolina-kot_salon-kosmetyczny_12376_piekary-slaskie#ba_s=seo" target="_blank" class="button">Zarezerwuj wizytę</a>
+    <a href="https://booksy.com/pl-pl/286978_studio-kocie-oko-karolina-kot_salon-kosmetyczny_12376_piekary-slaskie#ba_s=seo" target="_blank" class="button" data-aos="fade-up" data-aos-delay="400">Zarezerwuj wizytę</a>
 </div>
 
-<section id="o-mnie">
+<section id="o-mnie" data-aos="fade-up">
     <h2>O mnie</h2>
     <p class="about">
         Jeśli tu jesteś - szukasz czegoś więcej niż „ładnego efektu”.<br><br>
@@ -332,17 +203,17 @@
 </section>
 
 <section id="oferta">
-    <h2>Oferta</h2>
+    <h2 data-aos="fade-down">Oferta</h2>
     <div class="services">
-        <div class="card">
+        <div class="card" data-aos="flip-left">
             <h3>Oprawa oka</h3>
             <p>Stylizacja rzęs, laminacja, lifting brwi.</p>
         </div>
-        <div class="card">
+        <div class="card" data-aos="flip-left" data-aos-delay="200">
             <h3>Tatuaż & PMU</h3>
             <p>Indywidualne projekty dopasowane do Ciebie oraz profesjonalny makijaż permanentny.</p>
         </div>
-        <div class="card">
+        <div class="card" data-aos="flip-left" data-aos-delay="400">
             <h3>Kosmetologia</h3>
             <p>Mezoterapia, pielęgnacja i zabiegi regenerujące.</p>
         </div>
@@ -350,23 +221,35 @@
 </section>
 
 <section id="galeria">
-    <h2>Efekty</h2>
-    <div class="gallery">
-        <div style="background-image:url('https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/28929a15ecf040e88fef8ee878c8b0-kocie-oko-karolina-kot-inspiration-42dd560e53cc49928b794cdaea52b1-booksy.jpeg')"></div>
-        <div style="background-image:url('https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/bb3129b977174717bbd26214325f54-studio-kocie-oko-karolina-kot-inspiration-ebd7b799895a4831a11c18b2890c80-booksy.jpeg')"></div>
-        <div style="background-image:url('https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/a2ce39ce9f5d4a3cb62719febd6fda-studio-kocie-oko-karolina-kot-inspiration-d2e6f9f6432f433baee4f436d4ec16-booksy.jpeg')"></div>
-        <div style="background-image:url('https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/1ba3c13b79684cacbacc153ed7edbf-studio-kocie-oko-karolina-kot-inspiration-27e7f589f2d24f769120fdf9b95b43-booksy.jpeg')"></div>
+    <h2 data-aos="fade-up">Efekty</h2>
+    <div class="instagram-grid">
+        <a href="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/28929a15ecf040e88fef8ee878c8b0-kocie-oko-karolina-kot-inspiration-42dd560e53cc49928b794cdaea52b1-booksy.jpeg" class="insta-item" data-lightbox="studio" data-aos="fade-up">
+            <img src="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/28929a15ecf040e88fef8ee878c8b0-kocie-oko-karolina-kot-inspiration-42dd560e53cc49928b794cdaea52b1-booksy.jpeg" alt="">
+            <div class="insta-overlay">Powieksz zdjecie</div>
+        </a>
+        <a href="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/bb3129b977174717bbd26214325f54-studio-kocie-oko-karolina-kot-inspiration-ebd7b799895a4831a11c18b2890c80-booksy.jpeg" class="insta-item" data-lightbox="studio" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/bb3129b977174717bbd26214325f54-studio-kocie-oko-karolina-kot-inspiration-ebd7b799895a4831a11c18b2890c80-booksy.jpeg" alt="">
+            <div class="insta-overlay">Powieksz zdjecie</div>
+        </a>
+        <a href="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/a2ce39ce9f5d4a3cb62719febd6fda-studio-kocie-oko-karolina-kot-inspiration-d2e6f9f6432f433baee4f436d4ec16-booksy.jpeg" class="insta-item" data-lightbox="studio" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/a2ce39ce9f5d4a3cb62719febd6fda-studio-kocie-oko-karolina-kot-inspiration-d2e6f9f6432f433baee4f436d4ec16-booksy.jpeg" alt="">
+            <div class="insta-overlay">Powieksz zdjecie</div>
+        </a>
+        <a href="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/1ba3c13b79684cacbacc153ed7edbf-studio-kocie-oko-karolina-kot-inspiration-27e7f589f2d24f769120fdf9b95b43-booksy.jpeg" class="insta-item" data-lightbox="studio" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://d375139ucebi94.cloudfront.net/region2/pl/286978/inspiration/1ba3c13b79684cacbacc153ed7edbf-studio-kocie-oko-karolina-kot-inspiration-27e7f589f2d24f769120fdf9b95b43-booksy.jpeg" alt="">
+            <div class="insta-overlay">Powieksz zdjecie</div>
+        </a>
     </div>
 </section>
 
-<section>
+<section data-aos="fade-up">
     <h2>Zaufali nam</h2>
     <p class="testimonial">„Perfekcja w każdym detalu. Atmosfera i efekty top.”</p>
     <p class="testimonial">„Najlepsze rzęsy jakie miałam – wracam regularnie.”</p>
     <p class="testimonial">„Pełen profesjonalizm i wyczucie estetyki.”</p>
 </section>
 
-<section class="cta" id="kontakt">
+<section class="cta" id="kontakt" data-aos="zoom-in">
     <h2>Zarezerwuj wizytę</h2>
     <a href="https://booksy.com/pl-pl/286978_studio-kocie-oko-karolina-kot_salon-kosmetyczny_12376_piekary-slaskie#ba_s=seo" target="_blank" class="button">Umów się przez Booksy</a>
 </section>
@@ -383,7 +266,6 @@
             <p>Sobota: 09:00-13:00</p>
             <p>Niedziela: Zamknięte</p>
         </div>
-
         <div class="footer-col">
             <h4>Adres</h4>
             <p>📍 Marii Curie-Skłodowskiej 107/1</p>
@@ -391,16 +273,7 @@
             <p>Polska</p>
             <p>studio@kocieoko.art</p>
             <p>666 127 665</p>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/kocieokostudio" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2s34.4-58 36.2-93.9c2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-                </a>
-                <a href="https://www.facebook.com/share/14u3yNJppp/" target="_blank">
-                    <svg class="social-icon" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
-                </a>
-            </div>
         </div>
-
         <div class="footer-col">
             <h4>Nawigacja</h4>
             <ul class="footer-links">
@@ -421,6 +294,23 @@
         <p>© 2026 Kocie Oko Studio | Karolina Kot | Design by Dominika Keller</p>
     </div>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    const cursor = document.querySelector('#cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, .card, .button, .insta-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+    });
+</script>
 
 </body>
 </html>
